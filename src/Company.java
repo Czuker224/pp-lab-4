@@ -16,6 +16,20 @@ public class Company {
         employees[3] = new Manager("Bob Brown", 5500.0, 1);
         employees[4] = new Worker("Emma Wilson", 3200.0, "Engineer");
 
+        // Zliczanie pracowników, którzy nie są managerami
+        int nonManagerEmployeesCount = 0;
+        for (Employee employee : employees) {
+            if (!(employee instanceof Manager)) {
+                nonManagerEmployeesCount++;
+            }
+        }
+
+        // Ustawianie liczby podwładnych pracownika o indeksie równym 0
+        ((Manager)employees[0]).setNumberOfSubordinates(nonManagerEmployeesCount);
+
+        // Ustawianie pensji pracownika o indeksie równym 0 na 7500
+        employees[0].setSalary(7500.0);
+
         // Wyświetlanie danych dla wszystkich pracowników
         System.out.println("Dane dla wszystkich pracowników:");
         for (Employee employee : employees) {
