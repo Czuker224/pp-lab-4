@@ -1,7 +1,5 @@
 package src;
 
-package src;
-
 public class Employee {
     private String fullName;
     private double salary;
