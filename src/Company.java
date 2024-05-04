@@ -7,7 +7,7 @@ import src.employees.Manager;
 public class Company {
     public static void main(String[] args) {
         // Tworzenie tablicy pracowników
-        Employee[] employees = new Employee[5];
+        Employee[] employees = new Employee[7];
 
         // Dodawanie pracowników do tablicy
         employees[0] = new Manager("John Doe", 5000.0, 2);
@@ -15,23 +15,25 @@ public class Company {
         employees[2] = new Worker("Alice Johnson", 3500.0, "Designer");
         employees[3] = new Manager("Bob Brown", 5500.0, 1);
         employees[4] = new Worker("Emma Wilson", 3200.0, "Engineer");
+        employees[5] = new Manager("David Jones", 6000.0, 3); // Nowy Manager
+        employees[6] = new Worker("Michael Davis", 3800.0, "Analyst"); // Nowy Worker
 
-        // Zliczanie pracowników, którzy nie są managerami
-        int nonManagerEmployeesCount = 0;
+        // Aktualizacja pensji pracowników
         for (Employee employee : employees) {
-            if (!(employee instanceof Manager)) {
-                nonManagerEmployeesCount++;
+            double newSalary = employee.getSalary() + 500.0;
+            employee.setSalary(newSalary);
+        }
+
+        // Aktualizacja danych dla Managerów
+        for (Employee employee : employees) {
+            if (employee instanceof Manager) {
+                ((Manager) employee).setNumberOfSubordinates(2); // Ustawienie liczby podwładnych
+                employee.setSalary(7500.0); // Ustawienie nowej pensji
             }
         }
 
-        // Ustawianie liczby podwładnych pracownika o indeksie równym 0
-        ((Manager)employees[0]).setNumberOfSubordinates(nonManagerEmployeesCount);
-
-        // Ustawianie pensji pracownika o indeksie równym 0 na 7500
-        employees[0].setSalary(7500.0);
-
-        // Wyświetlanie danych dla wszystkich pracowników
-        System.out.println("Dane dla wszystkich pracowników:");
+        // Wyświetlanie zaktualizowanych informacji o pracownikach
+        System.out.println("Zaktualizowane informacje o pracownikach:");
         for (Employee employee : employees) {
             System.out.println(employee);
         }
